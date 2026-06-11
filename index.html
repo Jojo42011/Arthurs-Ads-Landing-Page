@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aquatic Pools &amp; Spa — Phoenix's Premier Custom Pool Builder</title>
+  <meta name="description" content="Luxury resort-style custom pool design and construction in Phoenix, Scottsdale, Paradise Valley, Chandler &amp; Goodyear. Schedule your free on-site inspection today." />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700;800&family=Inter:wght@300;400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ============================================================
+       AQUATIC POOLS & SPA — LANDING PAGE
+       Single-file build. Vanilla HTML/CSS/JS only.
+       ============================================================ */
+
+    :root {
+      --orange: #D4521A;
+      --orange-deep: #b34413;
+      --dark: #1a1a1a;
+      --offwhite: #F5F0EA;
+      --white: #FFFFFF;
+      --gray: #6b6b6b;
+      --transition: 300ms ease;
+      --shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
+      --shadow-lg: 0 30px 80px rgba(0, 0, 0, 0.18);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      color: var(--dark);
+      background: var(--white);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3 { font-family: 'Playfair Display', serif; line-height: 1.12; font-weight: 700; }
+
+    a { color: inherit; text-decoration: none; }
+
+    img { max-width: 100%; display: block; }
+
+    .container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+    /* ---------- Logo (text recreation) ---------- */
+    .logo { display: flex; flex-direction: column; line-height: 1; }
+    .logo .logo-name {
+      font-family: 'Great Vibes', cursive;
+      font-size: 34px;
+      color: var(--orange);
+      letter-spacing: 0.5px;
+    }
+    .logo .logo-sub {
+      font-family: 'Inter', sans-serif;
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--dark);
+      margin-top: -2px;
+      padding-left: 4px;
+    }
+    /* On dark backgrounds, sub text turns light */
+    .on-dark .logo .logo-sub { color: var(--white); }
+
+    /* ---------- Buttons ---------- */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 16px;
+      padding: 16px 32px;
+      border-radius: 50px;
+      border: 2px solid transparent;
+      cursor: pointer;
+      transition: transform var(--transition), box-shadow var(--transition), background var(--transition), color var(--transition);
+      text-align: center;
+      line-height: 1.2;
+    }
+    .btn-primary {
+      background: var(--orange);
+      color: var(--white);
+      box-shadow: 0 10px 30px rgba(212, 82, 26, 0.35);
+    }
+    .btn-primary:hover { background: var(--orange-deep); transform: translateY(-2px); box-shadow: 0 14px 40px rgba(212, 82, 26, 0.45); }
+    .btn-outline { background: transparent; color: var(--white); border-color: var(--orange); }
+    .btn-outline:hover { background: var(--orange); transform: translateY(-2px); }
+    .btn-lg { font-size: 18px; padding: 20px 40px; }
+    .btn-block { width: 100%; }
+
+    /* ---------- Star badge ---------- */
+    .stars { color: #FFB400; letter-spacing: 2px; }
+
+    /* ============================================================
+       NAVIGATION
+       ============================================================ */
+    .nav {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      z-index: 50;
+      padding: 22px 0;
+    }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; }
+    .nav-right { display: flex; align-items: center; gap: 24px; }
+    .google-badge {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--white);
+      font-size: 13px;
+      font-weight: 500;
+    }
+    .google-badge .stars { font-size: 14px; }
+    .google-badge .gb-text { line-height: 1.2; }
+    .google-badge .gb-text strong { display: block; font-weight: 700; }
+    .nav .btn { padding: 12px 24px; font-size: 15px; }
+
+    /* ============================================================
+       HERO
+       ============================================================ */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: var(--white);
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      /* REPLACE THIS WITH LUXURY POOL IMAGE */
+      /* background-image: url('pool-hero.jpg'); */
+      /* background-size: cover; */
+      /* background-position: center; */
+      background: linear-gradient(
+        135deg,
+        #0a3d5c 0%,
+        #0d6e8a 40%,
+        #1a8fa8 70%,
+        #0a3d5c 100%
+      );
+    }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      background: rgba(0, 0, 0, 0.55);
+    }
+    .hero-content {
+      position: relative;
+      z-index: 3;
+      max-width: 820px;
+      padding: 120px 24px 80px;
+    }
+    .hero-location {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.85);
+      margin-bottom: 24px;
+    }
+    .hero h1 {
+      font-size: clamp(38px, 6vw, 68px);
+      font-weight: 800;
+      margin-bottom: 18px;
+      text-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+    }
+    .hero-sub {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: clamp(20px, 3vw, 28px);
+      color: var(--orange);
+      font-weight: 600;
+      margin-bottom: 24px;
+    }
+    .hero-body {
+      max-width: 600px;
+      margin: 0 auto 32px;
+      font-size: 17px;
+      color: rgba(255, 255, 255, 0.92);
+      font-weight: 300;
+    }
+    .trust-badges {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px 28px;
+      margin-bottom: 38px;
+    }
+    .trust-badges span {
+      font-size: 14px;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.92);
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+    }
+    .trust-badges .check { color: var(--orange); font-weight: 700; }
+
+    /* ============================================================
+       SOCIAL PROOF STRIP
+       ============================================================ */
+    .proof-strip { background: var(--dark); padding: 38px 0; }
+    .proof-inner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 24px;
+      flex-wrap: wrap;
+      text-align: center;
+    }
+    .proof-stat { color: var(--white); padding: 0 28px; }
+    .proof-stat .num {
+      font-family: 'Playfair Display', serif;
+      font-size: 38px;
+      font-weight: 700;
+      color: var(--orange);
+      display: block;
+      line-height: 1;
+    }
+    .proof-stat .label {
+      font-size: 13px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.8);
+      margin-top: 8px;
+    }
+    .proof-divider { width: 1px; height: 48px; background: rgba(255, 255, 255, 0.15); }
+
+    /* ============================================================
+       SECTION TITLES
+       ============================================================ */
+    .section { padding: 90px 0; }
+    .section-head { text-align: center; margin-bottom: 50px; }
+    .section-head h2 { font-size: clamp(30px, 4.5vw, 46px); margin-bottom: 12px; }
+    .section-head p { font-size: 17px; color: var(--gray); }
+
+    /* ============================================================
+       MULTI-STEP FORM
+       ============================================================ */
+    .form-section { background: var(--offwhite); }
+    .form-card {
+      background: var(--white);
+      max-width: 580px;
+      margin: 0 auto;
+      border-radius: 20px;
+      box-shadow: var(--shadow-lg);
+      padding: 40px;
+      overflow: hidden;
+    }
+    .progress-wrap { margin-bottom: 28px; }
+    .progress-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    .progress-step-label { font-size: 13px; font-weight: 600; color: var(--orange); letter-spacing: 0.5px; text-transform: uppercase; }
+    .progress-pct { font-size: 13px; color: var(--gray); }
+    .progress-bar { height: 8px; background: #e8e0d6; border-radius: 50px; overflow: hidden; }
+    .progress-fill {
+      height: 100%;
+      width: 20%;
+      background: var(--orange);
+      border-radius: 50px;
+      transition: width 400ms ease;
+    }
+
+    .step { display: none; animation: fadeIn 350ms ease; }
+    .step.active { display: block; }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateX(16px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    .step h3 { font-size: 24px; margin-bottom: 6px; color: var(--dark); }
+    .step .step-hint { font-size: 14px; color: var(--gray); margin-bottom: 22px; }
+
+    /* Radio options as cards */
+    .options { display: flex; flex-direction: column; gap: 12px; margin-bottom: 8px; }
+    .option {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 16px 18px;
+      border: 2px solid #e8e0d6;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: border-color var(--transition), background var(--transition), box-shadow var(--transition);
+      font-size: 16px;
+      font-weight: 500;
+    }
+    .option:hover { border-color: var(--orange); background: #fdf6f1; }
+    .option input { position: absolute; opacity: 0; pointer-events: none; }
+    .option .radio-dot {
+      width: 22px; height: 22px;
+      border: 2px solid #c9bfb2;
+      border-radius: 50%;
+      flex-shrink: 0;
+      position: relative;
+      transition: border-color var(--transition);
+    }
+    .option .radio-dot::after {
+      content: '';
+      position: absolute;
+      inset: 4px;
+      border-radius: 50%;
+      background: var(--orange);
+      transform: scale(0);
+      transition: transform var(--transition);
+    }
+    .option input:checked ~ .radio-dot { border-color: var(--orange); }
+    .option input:checked ~ .radio-dot::after { transform: scale(1); }
+    .option:has(input:checked) { border-color: var(--orange); background: #fdf6f1; box-shadow: 0 6px 20px rgba(212, 82, 26, 0.12); }
+    .option .opt-icon { font-size: 20px; }
+
+    /* Text inputs */
+    .field { margin-bottom: 16px; }
+    .field label { display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px; color: var(--dark); }
+    .field input {
+      width: 100%;
+      padding: 14px 16px;
+      border: 2px solid #e8e0d6;
+      border-radius: 12px;
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      transition: border-color var(--transition);
+      background: var(--white);
+    }
+    .field input:focus { outline: none; border-color: var(--orange); }
+    .field input::placeholder { color: #b3a99c; }
+
+    .consent { font-size: 12px; color: var(--gray); margin: 14px 0 20px; line-height: 1.5; }
+
+    /* Filter / disqualify message */
+    .filter-msg {
+      display: none;
+      margin-top: 18px;
+      padding: 20px;
+      background: #fdf6f1;
+      border: 1px solid #f0d9cb;
+      border-radius: 12px;
+      font-size: 15px;
+      color: var(--dark);
+      line-height: 1.55;
+      animation: fadeIn 350ms ease;
+    }
+    .filter-msg.show { display: block; }
+    .filter-msg a { color: var(--orange); font-weight: 700; white-space: nowrap; }
+
+    /* Form navigation */
+    .form-nav { display: flex; justify-content: space-between; align-items: center; gap: 14px; margin-top: 26px; }
+    .btn-back {
+      background: transparent;
+      border: none;
+      color: var(--gray);
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 15px;
+      cursor: pointer;
+      padding: 12px 8px;
+      transition: color var(--transition);
+    }
+    .btn-back:hover { color: var(--dark); }
+    .btn-back[hidden] { visibility: hidden; }
+    .form-nav .btn { flex: 0 0 auto; }
+    #nextBtn[disabled] { opacity: 0.45; cursor: not-allowed; transform: none; box-shadow: none; }
+
+    /* Thank you state */
+    .thankyou { display: none; text-align: center; padding: 30px 10px; animation: fadeIn 400ms ease; }
+    .thankyou.show { display: block; }
+    .thankyou .check-circle {
+      width: 90px; height: 90px;
+      margin: 0 auto 24px;
+      border-radius: 50%;
+      background: var(--orange);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 14px 40px rgba(212, 82, 26, 0.4);
+    }
+    .thankyou .check-circle svg { width: 46px; height: 46px; }
+    .thankyou h3 { font-size: 32px; margin-bottom: 16px; }
+    .thankyou p { font-size: 16px; color: var(--gray); max-width: 420px; margin: 0 auto 14px; }
+    .thankyou .ty-phone { font-size: 15px; }
+    .thankyou .ty-phone a { color: var(--orange); font-weight: 700; }
+
+    /* ============================================================
+       GALLERY
+       ============================================================ */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    /* REPLACE PLACEHOLDERS WITH ACTUAL POOL PHOTOS */
+    /* Use: background-image: url('pool1.jpg') */
+    .gallery-item {
+      height: 300px;
+      border-radius: 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255, 255, 255, 0.9);
+      text-align: center;
+      box-shadow: var(--shadow);
+      transition: transform var(--transition);
+    }
+    .gallery-item:hover { transform: translateY(-6px); }
+    .gallery-item .ph-label { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 600; }
+    .gallery-item .ph-note { font-size: 12px; opacity: 0.7; margin-top: 6px; font-family: monospace; }
+    .gallery-item:nth-child(1) { background: linear-gradient(135deg, #0a3d5c, #1a8fa8); }
+    .gallery-item:nth-child(2) { background: linear-gradient(135deg, #0d6e8a, #16b3c4); }
+    .gallery-item:nth-child(3) { background: linear-gradient(135deg, #1a8fa8, #0a3d5c); }
+
+    /* ============================================================
+       REVIEWS
+       ============================================================ */
+    .reviews-section { background: var(--offwhite); }
+    .reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .review-card {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 32px;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+    }
+    .review-card .stars { font-size: 18px; margin-bottom: 16px; }
+    .review-card .quote { font-size: 16px; color: #3a3a3a; line-height: 1.7; flex-grow: 1; }
+    .review-card .author { margin-top: 18px; font-weight: 700; font-size: 15px; color: var(--dark); }
+
+    /* ============================================================
+       BOTTOM CTA
+       ============================================================ */
+    .cta-section { background: var(--dark); text-align: center; }
+    .cta-section h2 { color: var(--white); font-size: clamp(30px, 4.5vw, 46px); margin-bottom: 14px; }
+    .cta-section .cta-sub { color: var(--orange); font-size: 19px; font-weight: 600; font-style: italic; font-family: 'Playfair Display', serif; margin-bottom: 34px; }
+    .cta-buttons { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
+
+    /* ============================================================
+       FOOTER
+       ============================================================ */
+    .footer { background: #111; padding: 36px 0; }
+    .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 18px; flex-wrap: wrap; }
+    .footer .copyright { color: rgba(255, 255, 255, 0.55); font-size: 13px; }
+    .footer .footer-phone { color: var(--white); font-weight: 600; font-size: 15px; }
+    .footer .footer-phone a:hover { color: var(--orange); }
+
+    /* ============================================================
+       RESPONSIVE
+       ============================================================ */
+    @media (max-width: 900px) {
+      .gallery-grid, .reviews-grid { grid-template-columns: 1fr; }
+      .reviews-grid { max-width: 480px; margin: 0 auto; }
+    }
+    @media (max-width: 680px) {
+      .nav { padding: 16px 0; }
+      .nav .google-badge { display: none; }
+      .logo .logo-name { font-size: 28px; }
+      .section { padding: 64px 0; }
+      .form-card { padding: 28px 22px; }
+      .proof-stat { padding: 0 14px; }
+      .proof-divider { display: none; }
+      .proof-inner { gap: 28px; }
+      .hero-content { padding: 100px 20px 60px; }
+      .trust-badges { gap: 10px 18px; }
+      .cta-buttons .btn { width: 100%; max-width: 340px; }
+      .footer-inner { flex-direction: column; text-align: center; }
+    }
+    @media (max-width: 400px) {
+      .container { padding: 0 16px; }
+      .form-card { padding: 24px 16px; }
+      .btn-lg { font-size: 16px; padding: 18px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============================================================
+       HERO + NAV
+       ============================================================ -->
+  <header class="hero on-dark">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+
+    <!-- Navigation -->
+    <nav class="nav">
+      <div class="container nav-inner">
+        <div class="logo">
+          <span class="logo-name">Aquatic Pools</span>
+          <span class="logo-sub">Luxury Living</span>
+        </div>
+        <div class="nav-right">
+          <div class="google-badge">
+            <span class="stars">★★★★★</span>
+            <span class="gb-text"><strong>5.0 on Google</strong>26 reviews</span>
+          </div>
+          <a href="tel:+16232250537" class="btn btn-primary">Call Now</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero content -->
+    <div class="hero-content">
+      <div class="hero-location">📍 Scottsdale · Paradise Valley · Phoenix · Chandler · Goodyear</div>
+      <h1>Phoenix's Premier<br />Custom Pool Builder</h1>
+      <div class="hero-sub">Schedule Your Free On-Site Inspection Today</div>
+      <p class="hero-body">
+        We design and build resort-style custom pools for homeowners who want it
+        done once and done right. Photorealistic 3D design approval before we ever
+        break ground.
+      </p>
+      <div class="trust-badges">
+        <span><span class="check">✓</span> Licensed &amp; Insured</span>
+        <span><span class="check">✓</span> 5.0 Stars on Google</span>
+        <span><span class="check">✓</span> Phoenix's Highest-Rated Pool Builder</span>
+        <span><span class="check">✓</span> No Pressure. No Obligation.</span>
+      </div>
+      <a href="#form" class="btn btn-primary btn-lg">Get My Free On-Site Inspection →</a>
+    </div>
+  </header>
+
+  <!-- ============================================================
+       SOCIAL PROOF STRIP
+       ============================================================ -->
+  <section class="proof-strip">
+    <div class="container proof-inner">
+      <div class="proof-stat"><span class="num">15+</span><span class="label">Years Experience</span></div>
+      <div class="proof-divider"></div>
+      <div class="proof-stat"><span class="num">500+</span><span class="label">Pools Built</span></div>
+      <div class="proof-divider"></div>
+      <div class="proof-stat"><span class="num">5.0 ★</span><span class="label">Google Rating</span></div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       MULTI-STEP FORM
+       ============================================================ -->
+  <section class="section form-section" id="form">
+    <div class="container">
+      <div class="section-head">
+        <h2>Start Your Free On-Site Inspection</h2>
+        <p>Takes less than 60 seconds</p>
+      </div>
+
+      <div class="form-card">
+        <!-- FORM (hidden once submitted) -->
+        <form id="leadForm" novalidate>
+          <!-- Progress -->
+          <div class="progress-wrap">
+            <div class="progress-top">
+              <span class="progress-step-label" id="stepLabel">Step 1 of 5</span>
+              <span class="progress-pct" id="stepPct">20%</span>
+            </div>
+            <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+          </div>
+
+          <!-- STEP 1 — Location qualifier (FILTER) -->
+          <div class="step active" data-step="1">
+            <h3>Is your project located in Phoenix, AZ or within a 60-minute drive?</h3>
+            <p class="step-hint">We want to make sure we can serve you on-site.</p>
+            <div class="options">
+              <label class="option">
+                <input type="radio" name="location" value="Yes — Phoenix area" data-gate="ok" />
+                <span class="radio-dot"></span>
+                <span>Yes — my project is in the Phoenix area</span>
+              </label>
+              <label class="option">
+                <input type="radio" name="location" value="No — outside Phoenix area" data-gate="block" />
+                <span class="radio-dot"></span>
+                <span>No — my project is outside the Phoenix area</span>
+              </label>
+            </div>
+            <div class="filter-msg" id="msg-location">
+              Thank you for your interest. Unfortunately we only serve the greater
+              Phoenix area at this time.
+            </div>
+          </div>
+
+          <!-- STEP 2 — Project type -->
+          <div class="step" data-step="2">
+            <h3>What are you looking to build?</h3>
+            <p class="step-hint">Choose the option that fits best.</p>
+            <div class="options">
+              <label class="option"><input type="radio" name="projectType" value="New custom pool" /><span class="radio-dot"></span><span class="opt-icon">🏊</span><span>New custom pool</span></label>
+              <label class="option"><input type="radio" name="projectType" value="Pool + spa combination" /><span class="radio-dot"></span><span class="opt-icon">🌊</span><span>Pool + spa combination</span></label>
+              <label class="option"><input type="radio" name="projectType" value="Pool remodel or renovation" /><span class="radio-dot"></span><span class="opt-icon">🔄</span><span>Pool remodel or renovation</span></label>
+              <label class="option"><input type="radio" name="projectType" value="Water features & hardscaping" /><span class="radio-dot"></span><span class="opt-icon">💧</span><span>Water features &amp; hardscaping</span></label>
+              <label class="option"><input type="radio" name="projectType" value="Commercial project" /><span class="radio-dot"></span><span class="opt-icon">🏢</span><span>Commercial project</span></label>
+            </div>
+          </div>
+
+          <!-- STEP 3 — Budget qualifier (FILTER) -->
+          <div class="step" data-step="3">
+            <h3>What is your approximate budget for this project?</h3>
+            <p class="step-hint">This helps us tailor the right design options.</p>
+            <div class="options">
+              <label class="option"><input type="radio" name="budget" value="Under $40,000" data-gate="block" /><span class="radio-dot"></span><span>Under $40,000</span></label>
+              <label class="option"><input type="radio" name="budget" value="$40,000 — $75,000" data-gate="ok" /><span class="radio-dot"></span><span>$40,000 — $75,000</span></label>
+              <label class="option"><input type="radio" name="budget" value="$75,000 — $150,000" data-gate="ok" /><span class="radio-dot"></span><span>$75,000 — $150,000</span></label>
+              <label class="option"><input type="radio" name="budget" value="$150,000+" data-gate="ok" /><span class="radio-dot"></span><span>$150,000+</span></label>
+              <label class="option"><input type="radio" name="budget" value="Not sure yet" data-gate="ok" /><span class="radio-dot"></span><span>Not sure yet</span></label>
+            </div>
+            <div class="filter-msg" id="msg-budget">
+              Our custom builds typically start at $40,000. If your budget grows or
+              you'd like to explore options, feel free to reach out at
+              <a href="tel:+16232250537">(623) 225-0537</a>.
+            </div>
+          </div>
+
+          <!-- STEP 4 — Timeline -->
+          <div class="step" data-step="4">
+            <h3>When are you looking to get started?</h3>
+            <p class="step-hint">No commitment — just helps us plan.</p>
+            <div class="options">
+              <label class="option"><input type="radio" name="timeline" value="As soon as possible" /><span class="radio-dot"></span><span>As soon as possible</span></label>
+              <label class="option"><input type="radio" name="timeline" value="Within the next 3 months" /><span class="radio-dot"></span><span>Within the next 3 months</span></label>
+              <label class="option"><input type="radio" name="timeline" value="3 to 6 months from now" /><span class="radio-dot"></span><span>3 to 6 months from now</span></label>
+              <label class="option"><input type="radio" name="timeline" value="Just planning and researching" /><span class="radio-dot"></span><span>Just planning and researching</span></label>
+            </div>
+          </div>
+
+          <!-- STEP 5 — Contact info -->
+          <div class="step" data-step="5">
+            <h3>Where should we send your inspection details?</h3>
+            <p class="step-hint">We'll call within 15 minutes to confirm.</p>
+            <div class="field">
+              <label for="fullName">Full Name</label>
+              <input type="text" id="fullName" name="fullName" placeholder="Jane Smith" required autocomplete="name" />
+            </div>
+            <div class="field">
+              <label for="phone">Phone Number</label>
+              <input type="tel" id="phone" name="phone" placeholder="(623) 555-0123" required autocomplete="tel" />
+            </div>
+            <div class="field">
+              <label for="email">Email Address</label>
+              <input type="email" id="email" name="email" placeholder="jane@email.com" required autocomplete="email" />
+            </div>
+            <div class="field">
+              <label for="address">Property Address or City</label>
+              <input type="text" id="address" name="address" placeholder="Scottsdale, AZ" required autocomplete="street-address" />
+            </div>
+            <p class="consent">
+              By submitting you agree to be contacted by Aquatic Pools &amp; Spa
+              regarding your project.
+            </p>
+          </div>
+
+          <!-- Navigation -->
+          <div class="form-nav">
+            <button type="button" class="btn-back" id="backBtn" hidden>← Back</button>
+            <button type="button" class="btn btn-primary" id="nextBtn">Next →</button>
+            <button type="submit" class="btn btn-primary btn-block" id="submitBtn" style="display:none;">Book My Free On-Site Inspection →</button>
+          </div>
+        </form>
+
+        <!-- THANK YOU STATE -->
+        <div class="thankyou" id="thankyou">
+          <div class="check-circle">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M5 13l4 4L19 7" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </div>
+          <h3>You're All Set!</h3>
+          <p id="tyMessage">Thank you. One of our team members will call you within 15 minutes to confirm your free on-site inspection and find a time that works for you.</p>
+          <p class="ty-phone">In the meantime, feel free to call us directly at <a href="tel:+16232250537">(623) 225-0537</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       GALLERY
+       ============================================================ -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head"><h2>Our Work</h2></div>
+      <!-- REPLACE PLACEHOLDERS WITH ACTUAL POOL PHOTOS -->
+      <!-- Use: background-image: url('pool1.jpg') -->
+      <div class="gallery-grid">
+        <div class="gallery-item"><span class="ph-label">[ Pool Photo ]</span><span class="ph-note">/* Replace with actual pool image */</span></div>
+        <div class="gallery-item"><span class="ph-label">[ Pool Photo ]</span><span class="ph-note">/* Replace with actual pool image */</span></div>
+        <div class="gallery-item"><span class="ph-label">[ Pool Photo ]</span><span class="ph-note">/* Replace with actual pool image */</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       REVIEWS
+       ============================================================ -->
+  <section class="section reviews-section">
+    <div class="container">
+      <div class="section-head"><h2>What Phoenix Homeowners Are Saying</h2></div>
+      <div class="reviews-grid">
+        <div class="review-card">
+          <div class="stars">★★★★★</div>
+          <p class="quote">"Arthur and his team built our dream backyard. The attention to detail was incredible. We get compliments every time someone comes over."</p>
+          <div class="author">— Mike R., Scottsdale AZ</div>
+        </div>
+        <div class="review-card">
+          <div class="stars">★★★★★</div>
+          <p class="quote">"From the 3D design to the final inspection, the whole process was seamless. Best investment we've made in our home."</p>
+          <div class="author">— Sarah T., Paradise Valley AZ</div>
+        </div>
+        <div class="review-card">
+          <div class="stars">★★★★★</div>
+          <p class="quote">"Professional, on time, and the quality speaks for itself. Would recommend Aquatic Pools to anyone looking for a premium build."</p>
+          <div class="author">— David M., Phoenix AZ</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       BOTTOM CTA
+       ============================================================ -->
+  <section class="section cta-section">
+    <div class="container">
+      <h2>Ready to Build Your Dream Pool?</h2>
+      <p class="cta-sub">Inspections are free. Spots fill up fast.</p>
+      <div class="cta-buttons">
+        <a href="#form" class="btn btn-primary btn-lg">Get My Free Inspection →</a>
+        <a href="tel:+16232250537" class="btn btn-outline btn-lg">Call (623) 225-0537</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <footer class="footer on-dark">
+    <div class="container footer-inner">
+      <div class="logo">
+        <span class="logo-name">Aquatic Pools</span>
+        <span class="logo-sub">Luxury Living</span>
+      </div>
+      <div class="copyright">© 2025 Aquatic Pools &amp; Spa. All rights reserved.</div>
+      <div class="footer-phone"><a href="tel:+16232250537">(623) 225-0537</a></div>
+    </div>
+  </footer>
+
+  <script>
+    /* ============================================================
+       MULTI-STEP FORM LOGIC
+       ============================================================ */
+    (function () {
+      var TOTAL_STEPS = 5;
+      var current = 1;
+      var blocked = false; // true when a filter step disqualifies the lead
+
+      var form = document.getElementById('leadForm');
+      var steps = form.querySelectorAll('.step');
+      var stepLabel = document.getElementById('stepLabel');
+      var stepPct = document.getElementById('stepPct');
+      var progressFill = document.getElementById('progressFill');
+      var backBtn = document.getElementById('backBtn');
+      var nextBtn = document.getElementById('nextBtn');
+      var submitBtn = document.getElementById('submitBtn');
+
+      function getStepEl(n) { return form.querySelector('.step[data-step="' + n + '"]'); }
+
+      function updateProgress() {
+        var pct = Math.round((current / TOTAL_STEPS) * 100);
+        progressFill.style.width = pct + '%';
+        stepLabel.textContent = 'Step ' + current + ' of ' + TOTAL_STEPS;
+        stepPct.textContent = pct + '%';
+      }
+
+      function showStep(n) {
+        steps.forEach(function (s) { s.classList.remove('active'); });
+        getStepEl(n).classList.add('active');
+        current = n;
+        updateProgress();
+
+        // Back button visibility
+        backBtn.hidden = (current === 1);
+
+        // Last step → show submit, hide next
+        if (current === TOTAL_STEPS) {
+          nextBtn.style.display = 'none';
+          submitBtn.style.display = '';
+        } else {
+          nextBtn.style.display = '';
+          submitBtn.style.display = 'none';
+        }
+
+        refreshNextState();
+      }
+
+      // Determine whether current step has a valid selection and isn't blocked
+      function refreshNextState() {
+        var stepEl = getStepEl(current);
+        var radios = stepEl.querySelectorAll('input[type="radio"]');
+        if (radios.length === 0) { // contact step
+          nextBtn.disabled = false;
+          return;
+        }
+        var checked = stepEl.querySelector('input[type="radio"]:checked');
+        // hide filter messages by default, decide block state
+        blocked = false;
+        var msg = stepEl.querySelector('.filter-msg');
+        if (msg) msg.classList.remove('show');
+
+        if (checked && checked.getAttribute('data-gate') === 'block') {
+          blocked = true;
+          if (msg) msg.classList.add('show');
+        }
+        nextBtn.disabled = !checked || blocked;
+      }
+
+      // Listen for radio changes
+      form.addEventListener('change', function (e) {
+        if (e.target && e.target.type === 'radio') {
+          refreshNextState();
+        }
+      });
+
+      nextBtn.addEventListener('click', function () {
+        if (nextBtn.disabled) return;
+        if (current < TOTAL_STEPS) showStep(current + 1);
+      });
+
+      backBtn.addEventListener('click', function () {
+        if (current > 1) showStep(current - 1);
+      });
+
+      // Collect form data into an object
+      function collectData() {
+        return {
+          location: (form.querySelector('input[name="location"]:checked') || {}).value || '',
+          projectType: (form.querySelector('input[name="projectType"]:checked') || {}).value || '',
+          budget: (form.querySelector('input[name="budget"]:checked') || {}).value || '',
+          timeline: (form.querySelector('input[name="timeline"]:checked') || {}).value || '',
+          fullName: form.fullName.value.trim(),
+          phone: form.phone.value.trim(),
+          email: form.email.value.trim(),
+          address: form.address.value.trim(),
+          submittedAt: new Date().toISOString()
+        };
+      }
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        // Basic required validation on contact step
+        var required = ['fullName', 'phone', 'email', 'address'];
+        for (var i = 0; i < required.length; i++) {
+          var fld = form[required[i]];
+          if (!fld.value.trim()) { fld.focus(); return; }
+        }
+        if (!form.email.checkValidity()) { form.email.focus(); return; }
+
+        var data = collectData();
+
+        // Log submission to console as JSON
+        console.log('Aquatic Pools — New Lead:', JSON.stringify(data, null, 2));
+
+        /* TODO: POST to backend webhook endpoint */
+        /* fetch('/api/leads', { method: 'POST',
+           body: JSON.stringify(data) }) */
+
+        // Personalized thank-you
+        var firstName = data.fullName.split(' ')[0] || '';
+        var tyMsg = document.getElementById('tyMessage');
+        tyMsg.textContent = 'Thank you ' + firstName + '. One of our team members will call you within 15 minutes to confirm your free on-site inspection and find a time that works for you.';
+
+        // Swap form for thank-you state
+        form.style.display = 'none';
+        document.getElementById('thankyou').classList.add('show');
+        document.getElementById('thankyou').scrollIntoView({ behavior: 'smooth', block: 'center' });
+      });
+
+      // Init
+      showStep(1);
+    })();
+  </script>
+</body>
+</html>
