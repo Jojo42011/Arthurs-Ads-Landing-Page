@@ -138,26 +138,10 @@
       overflow: hidden;
       padding: 130px 0 70px;
     }
-    .hero-bg {
-      position: absolute;
-      inset: 0;
-      z-index: 1;
-      /* REPLACE THIS WITH LUXURY POOL IMAGE */
-      /* background-image: url('pool-hero.jpg'); */
-      /* background-size: cover; */
-      /* background-position: center; */
-      background: linear-gradient(
-        135deg,
-        #0a3d5c 0%,
-        #0d6e8a 40%,
-        #1a8fa8 70%,
-        #0a3d5c 100%
-      );
-    }
     .hero-overlay {
       position: absolute;
       inset: 0;
-      z-index: 2;
+      z-index: 1;
       background: rgba(0, 0, 0, 0.58);
     }
     .hero-grid {
@@ -509,7 +493,21 @@
        HERO + NAV
        ============================================================ -->
   <header class="hero on-dark">
-    <div class="hero-bg"></div>
+    <video
+      autoplay
+      muted
+      loop
+      playsinline
+      style="
+        position: absolute;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        object-fit: cover;
+        z-index: 0;
+      "
+    >
+      <source src="AquaticPoolAZ.mp4" type="video/mp4">
+    </video>
     <div class="hero-overlay"></div>
 
     <!-- Navigation -->
