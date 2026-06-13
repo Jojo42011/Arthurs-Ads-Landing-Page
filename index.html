@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Aquatic Pools &amp; Spa — Phoenix's Premier Custom Pool Builder</title>
   <meta name="description" content="Luxury resort-style custom pool design and construction in Phoenix, Scottsdale, Paradise Valley, Chandler &amp; Goodyear. Schedule your free on-site inspection today." />
 
@@ -29,9 +29,13 @@
       --shadow-lg: 0 30px 80px rgba(0, 0, 0, 0.18);
     }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: rgba(212, 82, 26, 0.15); }
 
-    html { scroll-behavior: smooth; }
+    html {
+      scroll-behavior: smooth;
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+    }
 
     body {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
@@ -132,11 +136,14 @@
     .hero {
       position: relative;
       min-height: 100vh;
+      min-height: 100svh;
       display: flex;
       align-items: center;
       color: var(--white);
       overflow: hidden;
       padding: 130px 0 70px;
+      /* Fallback backdrop shown only while the video loads (sits behind it) */
+      background: linear-gradient(135deg, #0a3d5c 0%, #0d6e8a 45%, #0a3d5c 100%);
     }
     .hero-overlay {
       position: absolute;
@@ -457,9 +464,12 @@
     /* ============================================================
        RESPONSIVE
        ============================================================ */
+    /* Tablet — hero collapses to a single column, copy centered above form */
     @media (max-width: 960px) {
-      .hero-grid { grid-template-columns: 1fr; gap: 36px; }
+      .hero { padding: 116px 0 64px; }
+      .hero-grid { grid-template-columns: 1fr; gap: 32px; }
       .hero-copy { max-width: 600px; margin: 0 auto; text-align: center; }
+      .hero-body { max-width: 520px; margin-left: auto; margin-right: auto; }
       .trust-badges { align-items: center; }
       .form-card { margin: 0 auto; }
     }
@@ -467,23 +477,49 @@
       .gallery-grid, .reviews-grid { grid-template-columns: 1fr; }
       .reviews-grid { max-width: 480px; margin: 0 auto; }
     }
+    /* Phones */
     @media (max-width: 680px) {
-      .nav { padding: 16px 0; }
+      .nav { padding: 14px 0; }
       .nav .google-badge { display: none; }
-      .logo .logo-name { font-size: 28px; }
-      .section { padding: 64px 0; }
-      .form-card { padding: 28px 22px; }
-      .proof-stat { padding: 0 14px; }
+      .logo .logo-name { font-size: 27px; }
+      .hero { padding: 100px 0 52px; }
+      .hero h1 { margin-bottom: 14px; }
+      .hero-body { font-size: 15.5px; margin-bottom: 22px; }
+      .section { padding: 60px 0; }
+      .section-head { margin-bottom: 34px; }
+      .form-card { padding: 26px 20px; }
+      .form-card-head h2 { font-size: 23px; }
+      .step h3 { font-size: 21px; }
+      .proof-strip { padding: 30px 0; }
+      .proof-inner { gap: 12px 0; }
+      .proof-stat { padding: 0; flex: 1 1 0; min-width: 96px; }
+      .proof-stat .num { font-size: 30px; }
+      .proof-stat .label { font-size: 11px; letter-spacing: 0.5px; }
       .proof-divider { display: none; }
-      .proof-inner { gap: 28px; }
-      .hero { padding: 110px 0 56px; }
-      .cta-buttons .btn { width: 100%; max-width: 340px; }
-      .footer-inner { flex-direction: column; text-align: center; }
+      .gallery-item { height: 220px; }
+      .review-card { padding: 26px 24px; }
+      .cta-buttons { flex-direction: column; align-items: center; }
+      .cta-buttons .btn { width: 100%; max-width: 360px; }
+      .footer-inner { flex-direction: column; text-align: center; gap: 12px; }
     }
+    /* Small phones */
     @media (max-width: 400px) {
       .container { padding: 0 16px; }
-      .form-card { padding: 24px 16px; }
-      .btn-lg { font-size: 16px; padding: 18px 24px; }
+      .hero { padding: 92px 0 48px; }
+      .hero h1 { font-size: 30px; }
+      .form-card { padding: 22px 16px; }
+      .form-card-head h2 { font-size: 21px; }
+      .step h3 { font-size: 19px; }
+      .option { padding: 14px 14px; font-size: 15px; gap: 11px; }
+      .btn-lg { font-size: 16px; padding: 18px 22px; }
+      .proof-stat .num { font-size: 26px; }
+    }
+
+    /* Respect reduced-motion: avoid the looping background for those who opt out */
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .hero video { display: none; }
+      .hero { background: linear-gradient(135deg, #0a3d5c 0%, #0d6e8a 45%, #0a3d5c 100%); }
     }
   </style>
 </head>
