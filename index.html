@@ -982,7 +982,7 @@
         };
       }
 
-      form.addEventListener('submit', function (e) {
+      form.addEventListener('submit', async function (e) {
         e.preventDefault();
 
         // Basic required validation on contact step
@@ -995,12 +995,26 @@
 
         var data = collectData();
 
-        // Log submission to console as JSON
-        console.log('Aquatic Pools New Lead:', JSON.stringify(data, null, 2));
+        // Send lead to backend (triggers Vapi outbound call). Never block the UI.
+        try {
+          const response = await fetch('/api/leads', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              name: data.fullName,
+              phone: data.phone,
+              email: data.email,
+              address: data.address,
+              project_type: data.projectType,
+              budget: data.budget,
+              timeline: data.timeline
+            })
+          });
+        } catch (err) {
+          console.error('Lead submit error:', err);
+        }
 
-        /* TODO: POST to backend webhook endpoint */
-        /* fetch('/api/leads', { method: 'POST',
-           body: JSON.stringify(data) }) */
+        fbq('track', 'Lead');
 
         // Personalized thank-you
         var firstName = data.fullName.split(' ')[0] || '';
@@ -1011,8 +1025,6 @@
         form.style.display = 'none';
         document.getElementById('thankyou').classList.add('show');
         document.getElementById('thankyou').scrollIntoView({ behavior: 'smooth', block: 'center' });
-
-        fbq('track', 'Lead');
       });
 
       // Init
