@@ -790,7 +790,7 @@
             </svg>
           </div>
           <h3>You're All Set!</h3>
-          <p id="tyMessage">Thank you. One of our team members will call you within 15 minutes to confirm your free onsite inspection and find a time that works for you.</p>
+          <p id="tyMessage">Thank you. You're one step away. Pick a time below that works for you and we'll see you at your free onsite inspection.</p>
 
           <!-- Cal.com inline booking -->
           <div class="cal-booking">
@@ -1061,7 +1061,7 @@
         // Personalized thank-you
         var firstName = data.fullName.split(' ')[0] || '';
         var tyMsg = document.getElementById('tyMessage');
-        tyMsg.textContent = 'Thank you ' + firstName + '. One of our team members will call you within 15 minutes to confirm your free onsite inspection and find a time that works for you.';
+        tyMsg.textContent = 'Thank you ' + firstName + '. You\'re one step away. Pick a time below that works for you and we\'ll see you at your free onsite inspection.';
 
         // Swap form for thank-you state
         form.style.display = 'none';
