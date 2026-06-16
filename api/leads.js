@@ -11,37 +11,30 @@ export default async function handler(req, res) {
   }
 
   try {
-    const vapiResponse = await fetch('https://api.vapi.ai/call/phone', {
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${process.env.VAPI_API_KEY}`,
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        assistantId: process.env.VAPI_SALES_AGENT_ID,
-        phoneNumberId: process.env.VAPI_PHONE_NUMBER_ID,
-        customer: {
-          number: phone,
-          name: name
-        },
-        assistantOverrides: {
-          variableValues: {
-            name,
-            project_type,
-            budget,
-            address
-          }
-        }
-      })
-    });
+    const arloResponse = await fetch(
+      'https://arthur-arlo.fly.dev/api/leads',
+      {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name,
+          phone,
+          email,
+          address,
+          project_type,
+          budget,
+          timeline
+        })
+      }
+    );
 
-    const vapiData = await vapiResponse.json();
-    console.log('Vapi response:', vapiData);
+    const arloData = await arloResponse.json();
+    console.log('Arlo lead response:', arloData);
 
     return res.status(200).json({ success: true });
 
   } catch (error) {
-    console.error('Vapi error:', error);
+    console.error('Arlo error:', error);
     return res.status(200).json({ success: true });
   }
 }
