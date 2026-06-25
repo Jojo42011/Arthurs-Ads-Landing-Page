@@ -54,29 +54,9 @@
 
     .container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 24px; }
 
-    /* ---------- Logo (text recreation) ---------- */
-    .logo { display: flex; flex-direction: row; align-items: center; gap: 10px; line-height: 1; }
-    .logo .logo-mark { width: 56px; height: auto; flex-shrink: 0; }
-    .logo .logo-mark path { fill: var(--orange); }
-    .logo .logo-text { display: flex; flex-direction: column; line-height: 1; }
-    .logo .logo-name {
-      font-family: 'Great Vibes', cursive;
-      font-size: 34px;
-      color: var(--orange);
-      letter-spacing: 0.5px;
-    }
-    .logo .logo-sub {
-      font-family: 'Inter', sans-serif;
-      font-size: 9px;
-      font-weight: 600;
-      letter-spacing: 4px;
-      text-transform: uppercase;
-      color: var(--dark);
-      margin-top: -2px;
-      padding-left: 4px;
-    }
-    /* On dark backgrounds, sub text turns light */
-    .on-dark .logo .logo-sub { color: var(--white); }
+    /* ---------- Logo ---------- */
+    .logo { display: flex; align-items: center; line-height: 1; }
+    .logo .logo-img { height: 48px; width: auto; display: block; }
 
     /* ---------- Buttons ---------- */
     .btn {
@@ -568,8 +548,7 @@
     @media (max-width: 680px) {
       .nav { padding: 14px 0; }
       .nav .google-badge { display: none; }
-      .logo .logo-name { font-size: 27px; }
-      .logo .logo-mark { width: 46px; }
+      .logo .logo-img { height: 38px; }
       .hero { padding: 100px 0 52px; }
       .hero h1 { margin-bottom: 14px; }
       .hero-body { font-size: 15.5px; margin-bottom: 22px; }
@@ -656,14 +635,7 @@
     <nav class="nav">
       <div class="container nav-inner">
         <div class="logo">
-          <svg class="logo-mark" viewBox="0 0 120 80" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <path d="M3,40 C33,18 82,14 118,31 C86,33 44,42 3,40 Z"/>
-            <path d="M12,64 C40,48 76,45 106,55 C76,59 42,62 12,64 Z"/>
-          </svg>
-          <div class="logo-text">
-            <span class="logo-name">Aquatic Pools</span>
-            <span class="logo-sub">Luxury Living</span>
-          </div>
+          <img class="logo-img" src="logo.png" alt="Aquatic Pools — Luxury Living">
         </div>
         <div class="nav-right">
           <div class="google-badge">
@@ -941,14 +913,7 @@
   <footer class="footer on-dark">
     <div class="container footer-inner">
       <div class="logo">
-        <svg class="logo-mark" viewBox="0 0 120 80" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <path d="M2,46 C20,30 44,22 72,24 C96,26 112,34 118,46 C108,40 92,37 74,37 C50,37 24,42 2,46 Z"/>
-          <path d="M10,58 C30,46 56,40 84,44 C104,47 114,54 118,62 C106,57 90,55 72,56 C48,57 28,62 10,58 Z"/>
-        </svg>
-        <div class="logo-text">
-          <span class="logo-name">Aquatic Pools</span>
-          <span class="logo-sub">Luxury Living</span>
-        </div>
+        <img class="logo-img" src="logo.png" alt="Aquatic Pools — Luxury Living">
       </div>
       <div class="copyright">© 2025 Aquatic Pools &amp; Spa. All rights reserved.</div>
       <div class="footer-phone"><a href="tel:+16232250537">(623) 225-0537</a></div>
